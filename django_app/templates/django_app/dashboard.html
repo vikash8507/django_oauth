@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Welcome, {{request.user.first_name}} {% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="text-center alert alert-success">Hello, {{request.user.username}}</h1>
+        <div class="col-sm-4 mx-auto">
+
+            <div class="card" style="width: 18rem;">
+                {% if profile.photo %}
+                <img class="card-img-top" src="{{profile.photo.url}}" alt="Card image cap">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{profile.user.first_name}} {{profile.user.last_name}}</h4>
+                    <h6 class='card-title'>{{profile.user.email}}</h6>
+                    <h6 class='card-title'>{{profile.mobile}}</h6>
+                    <h5>About Me: </h5>
+                    <p class="card-text">{{profile.about}}</p>
+                    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
